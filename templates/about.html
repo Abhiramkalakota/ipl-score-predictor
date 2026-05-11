@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Predictor - About</title>
+    
+    <!-- Global Styles -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-person-batting"></i>
+            <span>IPL Predictor</span>
+        </div>
+<ul class="nav-links">
+    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+    <li><a href="/predict" class="{% if request.path == '/predict' %}active{% endif %}">Predict Score</a></li>
+    <li><a href="/teams" class="{% if request.path == '/teams' %}active{% endif %}">Teams</a></li>
+    <li><a href="/live" class="{% if request.path == '/live' %}active{% endif %}">Live Stats</a></li>
+    <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+</ul>
+        <button class="btn-primary">Get Started</button>
+    </nav>
+
+    <main class="container about-page">
+        
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <h4 class="section-subtitle">ABOUT US</h4>
+                <h1 class="page-title">About <span class="highlight">IPL Predictor</span></h1>
+                <p class="page-desc" style="margin-bottom: 40px; max-width: 90%;">
+                    IPL Predictor is an AI-powered platform that predicts IPL match scores using advanced Machine Learning algorithms and real-time match statistics. Our goal is to deliver accurate, fast and reliable score predictions to help fans experience the game in a smarter way.
+                </p>
+                
+                <!-- Quick Features -->
+                <div class="quick-features">
+                    <div class="qf-item">
+                        <i class="fa-solid fa-brain qf-icon"></i>
+                        <div>
+                            <h5>AI Powered</h5>
+                            <p>Machine Learning Models</p>
+                        </div>
+                    </div>
+                    <div class="qf-item">
+                        <i class="fa-solid fa-database qf-icon"></i>
+                        <div>
+                            <h5>Data Driven</h5>
+                            <p>17+ Seasons of IPL Data</p>
+                        </div>
+                    </div>
+                    <div class="qf-item">
+                        <i class="fa-solid fa-bullseye qf-icon"></i>
+                        <div>
+                            <h5>High Accuracy</h5>
+                            <p>90%+ Prediction Accuracy</p>
+                        </div>
+                    </div>
+                    <div class="qf-item">
+                        <i class="fa-solid fa-bolt qf-icon"></i>
+                        <div>
+                            <h5>Real-time</h5>
+                            <p>Live Stats & Predictions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-hero-image">
+                <!-- Add your batsman image here -->
+             <img src="{{ url_for('static', filename='ipl-player.png') }}" alt="IPL Batsman" class="about-img">
+            </div>
+        </section>
+
+        <!-- Mission & Differences Section -->
+        <section class="dual-cards">
+            <!-- Mission Card -->
+            <div class="about-card">
+                <div class="card-header">
+                    <div class="icon-circle"><i class="fa-solid fa-bullseye"></i></div>
+                    <h2>Our Mission</h2>
+                </div>
+                <p class="card-text">
+                    To revolutionize the way IPL fans engage with the game by providing AI-powered score predictions that are accurate, fast and easy to understand. We combine data science, machine learning and real-time analytics to bring you the most reliable predictions.
+                </p>
+            </div>
+
+            <!-- Differences Card -->
+            <div class="about-card flex-between">
+                <div class="diff-content">
+                    <div class="card-header">
+                        <div class="icon-circle"><i class="fa-solid fa-star"></i></div>
+                        <h2>What Makes Us Different</h2>
+                    </div>
+                    <ul class="checklist">
+                        <li><i class="fa-solid fa-circle-check"></i> Advanced ML models trained on 17+ IPL seasons</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Real-time data integration for better accuracy</li>
+                        <li><i class="fa-solid fa-circle-check"></i> User-friendly interface and fast predictions</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Built for true IPL fans by true cricket enthusiasts</li>
+                    </ul>
+                </div>
+                <div class="trophy-graphic">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>IPL</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <div class="center-header">
+                <h2>How It Works</h2>
+                <div class="heading-line center-line"></div>
+            </div>
+            
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <i class="fa-regular fa-file-lines step-icon"></i>
+                    <h4>Enter Match Details</h4>
+                    <p>Enter teams, venue, toss, overs and other match details.</p>
+                </div>
+                
+                <i class="fa-solid fa-arrow-right-long step-arrow"></i>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <i class="fa-solid fa-brain step-icon"></i>
+                    <h4>AI Analyzes Data</h4>
+                    <p>Our ML model analyzes historical and real-time data in seconds.</p>
+                </div>
+
+                <i class="fa-solid fa-arrow-right-long step-arrow"></i>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <i class="fa-solid fa-chart-line step-icon"></i>
+                    <h4>Prediction Generated</h4>
+                    <p>AI generates score prediction with confidence and insights.</p>
+                </div>
+
+                <i class="fa-solid fa-arrow-right-long step-arrow"></i>
+
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <i class="fa-solid fa-trophy step-icon"></i>
+                    <h4>Get Predicted Score</h4>
+                    <p>View predicted score range, win probability and match insights.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

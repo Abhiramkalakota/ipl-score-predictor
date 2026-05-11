@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Predictor - Teams</title>
+    
+    <!-- 1. Main Global Styles (Navbar, Colors, Fonts) -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='teams.css') }}">
+    
+    <!-- Icons and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-person-batting"></i>
+            <span>IPL Predictor</span>
+        </div>
+<ul class="nav-links">
+    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+    <li><a href="/predict" class="{% if request.path == '/predict' %}active{% endif %}">Predict Score</a></li>
+    <li><a href="/teams" class="{% if request.path == '/teams' %}active{% endif %}">Teams</a></li>
+    <li><a href="/live" class="{% if request.path == '/live' %}active{% endif %}">Live Stats</a></li>
+    <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+</ul>
+
+        <button class="btn-primary">Get Started</button>
+    </nav>
+
+    <main class="container teams-page">
+        <!-- Header Section -->
+        <header class="teams-header">
+            <div class="header-content">
+                <h4 class="section-subtitle">TEAMS</h4>
+                <h1 class="page-title">All <span class="highlight">IPL Teams</span></h1>
+                <p class="page-desc">
+                    Explore all the incredible teams that make IPL the world's most exciting T20 league. Click on any team to view detailed stats and performance history.
+                </p>
+            </div>
+            <div class="header-image-content">
+        <!-- Replace 'your-image-name.png' with your actual file name -->
+        <img src="{{ url_for('static', filename='download.jpg') }}" alt="IPL Trophy Graphic" class="header-side-image">
+    </div>
+            <!-- Background players image goes here via CSS -->
+            <div class="header-bg"></div>
+        </header>
+
+        <!-- Teams Grid -->
+        <div class="teams-grid">
+            
+            <!-- Mumbai Indians -->
+            <div class="team-card border-mi" data-team="mi">
+                <img src="mi-logo.png" alt="MI Logo" class="team-logo">
+                <h3>Mumbai Indians</h3>
+                <p class="est-text mi-text">Est. 2008</p>
+                <button class="btn-details btn-mi">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Chennai Super Kings -->
+            <div class="team-card border-csk" data-team="csk">
+                <img src="csk-logo.png" alt="CSK Logo" class="team-logo">
+                <h3>Chennai Super Kings</h3>
+                <p class="est-text csk-text">Est. 2008</p>
+                <button class="btn-details btn-csk">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Royal Challengers Bangalore -->
+            <div class="team-card border-rcb" data-team="rcb">
+                <img src="rcb-logo.png" alt="RCB Logo" class="team-logo rcb-logo">
+                <h3>Royal Challengers Bangalore</h3>
+                <p class="est-text rcb-text">Est. 2008</p>
+                <button class="btn-details btn-rcb">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Kolkata Knight Riders -->
+            <div class="team-card border-kkr" data-team="kkr">
+                <img src="kkr-logo.png" alt="KKR Logo" class="team-logo">
+                <h3>Kolkata Knight Riders</h3>
+                <p class="est-text kkr-text">Est. 2008</p>
+                <button class="btn-details btn-kkr">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Delhi Capitals -->
+            <div class="team-card border-dc" data-team="dc">
+                <img src="dc-logo.png" alt="DC Logo" class="team-logo">
+                <h3>Delhi Capitals</h3>
+                <p class="est-text dc-text">Est. 2008</p>
+                <button class="btn-details btn-dc">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Rajasthan Royals -->
+            <div class="team-card border-rr" data-team="rr">
+                <img src="rr-logo.png" alt="RR Logo" class="team-logo">
+                <h3>Rajasthan Royals</h3>
+                <p class="est-text rr-text">Est. 2008</p>
+                <button class="btn-details btn-rr">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Sunrisers Hyderabad -->
+            <div class="team-card border-srh" data-team="srh">
+                <img src="srh-logo.png" alt="SRH Logo" class="team-logo">
+                <h3>Sunrisers Hyderabad</h3>
+                <p class="est-text srh-text">Est. 2013</p>
+                <button class="btn-details btn-srh">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Punjab Kings -->
+            <div class="team-card border-pbks" data-team="pbks">
+                <img src="pbks-logo.png" alt="PBKS Logo" class="team-logo">
+                <h3>Punjab Kings</h3>
+                <p class="est-text pbks-text">Est. 2008</p>
+                <button class="btn-details btn-pbks">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Lucknow Super Giants -->
+            <div class="team-card border-lsg" data-team="lsg">
+                <img src="lsg-logo.png" alt="LSG Logo" class="team-logo">
+                <h3>Lucknow Super Giants</h3>
+                <p class="est-text lsg-text">Est. 2022</p>
+                <button class="btn-details btn-lsg">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Gujarat Titans -->
+            <div class="team-card border-gt" data-team="gt">
+                <img src="gt-logo.png" alt="GT Logo" class="team-logo">
+                <h3>Gujarat Titans</h3>
+                <p class="est-text gt-text">Est. 2022</p>
+                <button class="btn-details btn-gt">View Details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal for Team Details & Squad -->
+    <div class="modal-overlay" id="teamModal">
+        <div class="modal-content">
+            <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="modal-header">
+                <img src="" alt="Team Logo" id="modalLogo" class="modal-logo">
+                <div>
+                    <h2 id="modalTeamName">Team Name</h2>
+                    <p id="modalTeamStats" class="modal-stats">Trophies: 0 | Captain: TBD</p>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <h3>2026 Squad</h3>
+                <div class="squad-list" id="modalSquadList">
+                    <!-- Javascript will inject players here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="{{ url_for('static', filename='teams.js') }}"></script>
+</body>
+</html>

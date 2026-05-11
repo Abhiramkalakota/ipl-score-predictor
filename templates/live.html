@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Stats - IPL Predictor</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='live.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">🏏 IPL Predictor</div>
+    <ul>
+        <li><a href="/" class="{% if active=='home' %}active{% endif %}">Home</a></li>
+        <li><a href="/predict" class="{% if active=='predict' %}active{% endif %}">Predict Score</a></li>
+        <li><a href="/teams" class="{% if active=='teams' %}active{% endif %}">Teams</a></li>
+        <li><a href="/live" class="{% if active=='live' %}active{% endif %}">Live Stats</a></li>
+        <li><a href="/about" class="{% if active=='about' %}active{% endif %}">About</a></li>
+    </ul>
+</nav>
+
+<!-- LIVE SECTION -->
+<section class="live-container">
+
+    <h1>🔴 Live Match</h1>
+
+    <div class="live-card">
+
+        <h2 id="teams">Mumbai Indians vs Chennai Super Kings</h2>
+
+        <h1 id="score">120/3</h1>
+        <p id="overs">12.0 overs</p>
+
+        <p id="runrate">Run Rate: 10.0</p>
+
+        <h2 id="prediction">Predicting...</h2>
+
+    </div>
+
+</section>
+
+<script src="{{ url_for('static', filename='live.js') }}"></script>
+
+</body>
+</html>

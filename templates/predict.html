@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Predictor - Predict Score</title>
+    
+    <!-- Flask Dynamic Stylesheet Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='predict.css') }}">
+    
+    <!-- Icons and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-person-batting"></i>
+            <span>IPL Predictor</span>
+        </div>
+<ul class="nav-links">
+    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+    <li><a href="/predict" class="{% if request.path == '/predict' %}active{% endif %}">Predict Score</a></li>
+    <li><a href="/teams" class="{% if request.path == '/teams' %}active{% endif %}">Teams</a></li>
+    <li><a href="/live" class="{% if request.path == '/live' %}active{% endif %}">Live Stats</a></li>
+    <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+</ul>
+        <button class="btn-primary">Get Started</button>
+    </nav>
+
+    <main class="container predict-page">
+        <!-- Header Section -->
+        <header class="teams-header">
+            <div class="header-text-content">
+                <h1 class="page-title">Predict <span class="highlight">IPL Score</span></h1>
+                <p class="page-desc">
+                    Enter the match details below and get the AI-powered prediction for the final score.
+                </p>
+            </div>
+        </header>
+
+        <!-- Dashboard Layout -->
+        <div class="dashboard-grid">
+            
+            <!-- LEFT COLUMN: Match Details Form -->
+            <div class="dash-card form-card">
+                <div class="card-title">
+                    <i class="fa-regular fa-clipboard"></i> Match Details
+                </div>
+
+                <!-- ALL 10 Teams Row -->
+                <div class="form-row col-2">
+                    <div class="input-group">
+                        <label>Batting Team</label>
+                        <select id="battingTeam" class="standard-input">
+                            <option value="Mumbai Indians">Mumbai Indians</option>
+                            <option value="Chennai Super Kings">Chennai Super Kings</option>
+                            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                            <option value="Delhi Capitals">Delhi Capitals</option>
+                            <option value="Rajasthan Royals">Rajasthan Royals</option>
+                            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                            <option value="Punjab Kings">Punjab Kings</option>
+                            <option value="Lucknow Super Giants">Lucknow Super Giants</option>
+                            <option value="Gujarat Titans">Gujarat Titans</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Bowling Team</label>
+                        <select id="bowlingTeam" class="standard-input">
+                            <option value="Chennai Super Kings">Chennai Super Kings</option>
+                            <option value="Mumbai Indians">Mumbai Indians</option>
+                            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                            <option value="Delhi Capitals">Delhi Capitals</option>
+                            <option value="Rajasthan Royals">Rajasthan Royals</option>
+                            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                            <option value="Punjab Kings">Punjab Kings</option>
+                            <option value="Lucknow Super Giants">Lucknow Super Giants</option>
+                            <option value="Gujarat Titans">Gujarat Titans</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Match Stats Row -->
+                <div class="form-row col-3">
+                    <div class="input-group">
+                        <label>Current Runs</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-cricket-bat-ball input-icon"></i>
+                            <input type="number" id="currentRuns" value="120" min="0">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Wickets Lost</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-bars-staggered input-icon"></i>
+                            <input type="number" id="currentWickets" value="3" min="0" max="10">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Overs Completed</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-clock input-icon"></i>
+                            <input type="number" id="oversCompleted" value="12.0" step="0.1" min="0" max="20">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button class="btn-predict" id="predictBtn">
+                    <i class="fa-solid fa-chart-line"></i> Predict Score
+                </button>
+                <div class="ai-model-info">
+                    <i class="fa-regular fa-circle-check"></i> AI Model: <span class="text-green">XGBoost Regressor</span>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Prediction Result -->
+            <div class="dash-card result-card">
+                <div class="card-title">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: #F59E0B;"></i> Prediction Result
+                </div>
+
+                <!-- Main Score Block -->
+                <div class="main-score-block">
+                    <p class="score-label">Predicted Final Score</p>
+                    <h2 class="score-range" id="resultScore">-- - --</h2>
+                    <p class="score-desc" id="resultMessage">Enter match details and click predict.</p>
+                    
+                    <div class="confidence-bar-container">
+                        <div class="conf-labels">
+                            <span>Confidence Level</span>
+                            <span class="text-green" id="resultConfidence">0%</span>
+                        </div>
+                        <div class="conf-track">
+                            <div class="conf-fill" id="confidenceFill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Stats Grid -->
+                <div class="stats-mini-grid">
+                    <div class="mini-stat">
+                        <div class="mini-icon"><i class="fa-solid fa-arrow-trend-up text-blue"></i> Projected Run Rate</div>
+                        <h4 id="projRunRate">--</h4>
+                        <p>runs per over</p>
+                    </div>
+                    <div class="mini-stat border-sides">
+                        <div class="mini-icon"><i class="fa-regular fa-clock text-blue"></i> Total Overs</div>
+                        <h4>20.0</h4>
+                        <p>overs</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Flask Dynamic JS Link -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

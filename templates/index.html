@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Predictor - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-person-batting"></i>
+            <span>IPL Predictor</span>
+        </div>
+<ul class="nav-links">
+    <!-- Changed .html to Flask routes, and added dynamic active class -->
+    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+    <li><a href="/predict" class="{% if request.path == '/predict' %}active{% endif %}">Predict Score</a></li>
+    <li><a href="/teams" class="{% if request.path == '/teams' %}active{% endif %}">Teams</a></li>
+    <li><a href="/live" class="{% if request.path == '/live' %}active{% endif %}">Live Stats</a></li>
+    <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+</ul>
+        <button class="btn-primary">Get Started</button>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">
+                    <i class="fa-solid fa-microchip"></i> AI POWERED PREDICTIONS
+                </div>
+                <h1 class="hero-title">
+                    PREDICT IPL<br>
+                    <span class="highlight">SCORES</span> WITH AI
+                </h1>
+                <p class="hero-desc">
+                    Get accurate IPL score predictions using Machine Learning.<br>
+                    Real-time insights, smarter predictions.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-large">Predict Now <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-outline btn-large">View Live Stats <i class="fa-solid fa-chart-simple"></i></button>
+                </div>
+            </div>
+            <!-- The player image is handled via CSS background in this specific layout, 
+                 but you could also place a right-aligned image tag here if preferred. -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Stats Section -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-trophy stat-icon"></i>
+                <div class="stat-info">
+                    <h3>17+</h3>
+                    <p>IPL Seasons</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-chart-column stat-icon"></i>
+                <div class="stat-info">
+                    <h3>5000+</h3>
+                    <p>Data Points</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bullseye stat-icon"></i>
+                <div class="stat-info">
+                    <h3>90%+</h3>
+                    <p>Prediction Accuracy</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bolt stat-icon"></i>
+                <div class="stat-info">
+                    <h3>Real-time</h3>
+                    <p>Live Predictions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Predictor Section -->
+        <section class="about-preview">
+            <div class="about-content">
+                <h2>About Our Predictor</h2>
+                <div class="heading-line"></div>
+                <p>
+                    Our IPL Score Predictor uses advanced Machine Learning algorithms trained on historical IPL data to predict final scores based on real-time match situations.
+                </p>
+                <button class="btn-primary">Learn More</button>
+            </div>
+            <div class="about-image">
+                <!-- Replace with your actual neon wireframe image -->
+                <img src="{{ url_for('static', filename='wireframe.png') }}" alt="AI Wireframe Batsman" class="neon-img">
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
